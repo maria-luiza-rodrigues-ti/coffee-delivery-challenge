@@ -52,7 +52,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
 
   return (
     <CoffeeCardContainer key={coffee.id}>
-      <img src={coffee.image} />
+      <img src={import.meta.env.BASE_URL + coffee.image} />
       <CoffeeTagsContainer>
         {coffee.tags.map((tag: string) => {
           return <CoffeeTags key={tag}>{tag}</CoffeeTags>;

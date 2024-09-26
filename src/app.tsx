@@ -10,7 +10,7 @@ import { CartContextProvider } from "./context/cart-context";
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <CartContextProvider>
           <Router />
         </CartContextProvider>
