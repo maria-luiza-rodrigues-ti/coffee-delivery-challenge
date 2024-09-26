@@ -1,50 +1,96 @@
-# React + TypeScript + Vite
+# Coffee Delivery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Essa é uma solução para o desafio técnico do nível da trilha de React da Rocketseat. Este projeto é uma aplicação de e-commerce onde é possível produtos (cafés) disponíveis para compra, adicionar uma quantidade específicas de itens no carrinho, aumentar ou remover a quantidade de itens no carrinho. Além disso, a quantidade de itens são mostrados no Header da aplicação.
 
-Currently, two official plugins are available:
+![](./public/assets/print.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Índice
 
-## Expanding the ESLint configuration
+- [Visão Geral](#visao-geral)
+  - [O desafio](#o-desafio)
+  - [Links](#links)
+- [Meu processo](#meu-process)
+  - [Funcionalidades](#funcionalidades)
+  - [Tecnologias Utilizadas](#tecnologias-utilizadas)
+  - [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Como rodar o projeto](#como-rodar-o-projeto)
+- [Autor](#autor)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Visão Geral
 
-- Configure the top-level `parserOptions` property like this:
+### O desafio
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Requisitos do desafio:
+
+- Listagem de produtos (cafés) disponíveis para compra
+- Adicionar uma quantidade específicas de itens no carrinho
+- Aumentar ou remover a quantidade de itens no carrinho
+- Formulário para o usuário preencher o seu endereço
+- Exibir o total de itens no carrinho no Header
+- Exibir o valor total da soma de itens no carrinho multiplicados pelo valor
+
+## Meu processo
+
+### Funcionalidades
+
+- **Adicionar ao Carrinho:** Os usuários podem adicionar produtos ao carrinho clicando no botão com ícone de carrinho.
+- **Adicionar ao quantidade específica ao Carrinho:** Os usuários podem adicionar produtos ao carrinho clicando no botão de "+" ou "-" antes de .
+- **Remover do Carrinho:** Produtos no carrinho podem ser removidos ao clicar o no botão de "Remover" no Checkout.
+- **Total de itens exibidos no Header:** O total de itens adicionados ao carrinho são exibidos no Header, acima do ícone de carrinho.
+- **Formulário para usuário preencher dados:** Os usuários podem preencher seus dados do pedido e forma de pagamento na página de Checkout.
+- **Persistência de Dados:** Todos os produtos adicionados ao carrinho são armazenados no localStorage do navegador. Isso garante que, ao recarregar a página ou fechar o navegador, os dados permanecem intactos e sincronizados com as ações anteriores do usuário.
+
+### Conceitos utilizados
+
+- **Estados**
+- **ContextAPI**
+- **LocalStorage**
+- **Imutabilidade do estado**
+- **Listas e chaves no ReactJS**
+- **Propriedades**
+- **Componentização**
+
+### Tecnologias utilizadas
+
+- [ReactJS](https://pt-br.react.dev/blog/2023/03/16/introducing-react-dev)
+- [Vite](https://vitejs.dev/)
+- [Styled Components](https://styled-components.com)
+- [TypeScript](https://www.typescriptlang.org/)
+
+## Como rodar o projeto
+
+```bash
+
+# Clone este repositório
+$ git clone https://github.com/maria-luiza-rodrigues-ti/coffee-delivery-challenge
+
+# Vá para a pasta da aplicação Front End
+$ cd b8one-challenge
+
+# Instale as dependências
+$ npm install
+ou
+$ yarn install
+
+# Execute a aplicação em modo de desenvolvimento
+$ npm run dev
+ou
+$ yarn dev
+
+    Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver os resultados.
+
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Links
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- URL: [https://maria-luiza-rodrigues-ti.github.io/b8one-challenge/](https://maria-luiza-rodrigues-ti.github.io/b8one-challenge/)
+
+## Autor
+
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/86676797?v=4" width="100px;" alt=""/>
+ <br />
+ <sub><b>Maria Luiza Rodrigues</b></sub></a>
+
+---
