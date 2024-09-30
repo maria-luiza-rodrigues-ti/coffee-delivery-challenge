@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const BackgroundImage = styled.div`
-  background: url('/assets/background.png') no-repeat center;
+  background-image: url(${import.meta.env +'/assets/background.png'});
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
   backdrop-filter: blur(80px);
 
