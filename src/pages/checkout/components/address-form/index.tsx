@@ -18,6 +18,8 @@ import {
   StateInput,
 } from "./styles";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useCallback, useEffect } from "react";
+import { useCart } from "../../../../hooks/useCart";
 
 const AddressFormValidationSchema = z.object({
   cep: z.number({ invalid_type_error: "Informe o CEP" }).nullable(),
@@ -35,7 +37,9 @@ const AddressFormValidationSchema = z.object({
 export type AddressFormData = z.infer<typeof AddressFormValidationSchema>;
 
 export function AddressForm() {
-  const { register, handleSubmit, reset } = useForm<AddressFormData>({
+  const { setShippingAddress } = useCart();
+
+  const { register, watch } = useForm<AddressFormData>({
     resolver: zodResolver(AddressFormValidationSchema),
     defaultValues: {
       cep: null,
@@ -48,20 +52,30 @@ export function AddressForm() {
     },
   });
 
-  function handleAddressSubmit(data: AddressFormData) {
-    const stringifiedData = JSON.stringify(data);
-    localStorage.setItem("@coffee-delivery:address", stringifiedData);
+  const { cep, street, number, neighborhood, city, state } = watch();
 
-    reset();
-  }
+  const addShippingAddress = useCallback(() => {
+    if (cep && street && number && neighborhood && city && state) {
+      setShippingAddress({
+        cep,
+        street,
+        number,
+        complement: "",
+        neighborhood,
+        city,
+        state,
+      });
+    }
+  }, [cep, street, number, neighborhood, city, state, setShippingAddress]);
+
+  useEffect(() => {
+    addShippingAddress();
+  }, [addShippingAddress]);
 
   return (
     <AddressAndPaymentContainer>
       <FormTitle>Complete seu pedido</FormTitle>
-      <FormContainer
-        onSubmit={handleSubmit(handleAddressSubmit)}
-        {...AddressForm}
-      >
+      <FormContainer {...AddressForm}>
         <AddressFormTitleContainer>
           <MapPinLine size={22} />
           <div>

@@ -6,7 +6,9 @@ import {
   incrementProductAction,
   removeFromCartAction,
   setPaymentMethodAction,
+  setShippingAddressAction,
 } from "../reducers/cart-items/actions";
+import { AddressFormData } from "../pages/checkout/components/address-form";
 interface ProductContextProps {
   cartItems: CartItem[];
   numberOfCartItems: number;
@@ -16,6 +18,7 @@ interface ProductContextProps {
   decrementProductQuantity: (product: CartItem) => void;
   removeItemFromCart: (product: CartItem) => void;
   setPaymentMethod: (paymentMethod: string) => void;
+  setShippingAddress: (shippingAddress: AddressFormData) => void;
 }
 
 export const CartContext = createContext({} as ProductContextProps);
@@ -30,6 +33,7 @@ export function CartContextProvider({ children }: ProductContextProviderProps) {
     {
       cartItems: [],
       paymentMethod: null,
+      shippingAddress: null,
     },
 
     (initialState) => {
@@ -80,6 +84,10 @@ export function CartContextProvider({ children }: ProductContextProviderProps) {
     dispatch(setPaymentMethodAction(paymentMethod));
   }
 
+  function setShippingAddress(address: AddressFormData) {
+    dispatch(setShippingAddressAction(address));
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -91,6 +99,7 @@ export function CartContextProvider({ children }: ProductContextProviderProps) {
         decrementProductQuantity,
         removeItemFromCart,
         setPaymentMethod,
+        setShippingAddress,
       }}
     >
       {children}

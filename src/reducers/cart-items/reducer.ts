@@ -1,3 +1,4 @@
+import { AddressFormData } from "../../pages/checkout/components/address-form/index.tsx";
 import { CoffeeProps } from "../../pages/home/index.tsx";
 import { Actions, ActionTypes } from "./actions";
 
@@ -8,6 +9,7 @@ export interface CartItem extends CoffeeProps {
 export interface CartItemsState {
   cartItems: CartItem[];
   paymentMethod: string | null;
+  shippingAddress: AddressFormData | null;
 }
 
 export function CartItemsReducer(state: CartItemsState, action: Actions): CartItemsState {
@@ -75,6 +77,13 @@ export function CartItemsReducer(state: CartItemsState, action: Actions): CartIt
         return {
           ...state,
           paymentMethod: action.payload.paymentMethod,
+        };
+      }
+
+      case ActionTypes.SET_SHIPPING_ADDRESS: {
+        return {
+          ...state,
+          shippingAddress: action.payload.shippingAddress,
         };
       }
 

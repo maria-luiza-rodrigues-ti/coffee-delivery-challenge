@@ -1,3 +1,4 @@
+import { AddressFormData } from "../../pages/checkout/components/address-form";
 import { CartItem } from "./reducer";
 
 export enum ActionTypes {
@@ -6,6 +7,7 @@ export enum ActionTypes {
   DECREMENT_PRODUCT = "DECREMENT_PRODUCT",
   REMOVE_FROM_CART = "REMOVE_FROM_CART",
   SET_PAYMENT_METHOD = "SET_PAYMENT_METHOD",
+  SET_SHIPPING_ADDRESS = "SET_SHIPPING_ADDRESS",
 }
 
 export type AddToCartAction = {
@@ -33,13 +35,19 @@ export type SetPaymentMethodAction = {
   payload: { paymentMethod: string };
 };
 
-// Unir todos os tipos em um só
+export type SetShippingAddressAction = {
+  type: ActionTypes.SET_SHIPPING_ADDRESS;
+  payload: { shippingAddress: AddressFormData };
+};
+
+
 export type Actions =
   | AddToCartAction
   | IncrementProductAction
   | DecrementProductAction
   | RemoveFromCartAction
-  | SetPaymentMethodAction;
+  | SetPaymentMethodAction
+  | SetShippingAddressAction;
 
 export function addToCartAction(product: CartItem): AddToCartAction {
   return {
@@ -82,6 +90,15 @@ export function setPaymentMethodAction(paymentMethod: string): SetPaymentMethodA
     type: ActionTypes.SET_PAYMENT_METHOD,
     payload: {
       paymentMethod,
+    },
+  };
+}
+
+export function setShippingAddressAction(shippingAddress: AddressFormData): SetShippingAddressAction {
+  return {
+    type: ActionTypes.SET_SHIPPING_ADDRESS,
+    payload: {
+      shippingAddress,
     },
   };
 }
