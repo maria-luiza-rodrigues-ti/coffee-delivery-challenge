@@ -60,7 +60,7 @@ export function ProductCard({ cartProduct }: ProductCardProps) {
   return (
     <ProductCardContainer>
       <ProductDetailsContainer>
-        <img src={cartProduct.image} />
+        <img src={import.meta.env.BASE_URL + cartProduct.image} />
         <QuantityContainer>
           <h3>{cartProduct.title}</h3>
           <CoffeeQuantity>
