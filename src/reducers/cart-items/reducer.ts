@@ -1,5 +1,5 @@
 import { CoffeeProps } from "../../pages/home/index.tsx";
-import { ActionTypes, Actions } from "./actions";
+import { Actions, ActionTypes } from "./actions";
 
 export interface CartItem extends CoffeeProps {
   quantity: number;
@@ -7,17 +7,18 @@ export interface CartItem extends CoffeeProps {
 
 export interface CartItemsState {
   cartItems: CartItem[];
+  paymentMethod: string | null;
 }
 
-export function CartItemsReducer(state: CartItem[], action: Actions) {
+export function CartItemsReducer(state: CartItemsState, action: Actions): CartItemsState {
     switch (action.type) {
       case ActionTypes.ADD_TO_CART: {
-        const isProductAlreadyInTheCart = state.find(
+        const isProductAlreadyInTheCart = state.cartItems.find(
           (item) => item.id === action.payload.product.id
         );
 
         if (isProductAlreadyInTheCart) {
-          return state.map((item) => {
+          const updatedItems = state.cartItems.map((item) => {
             if (item.id === action.payload.product.id) {
               return {
                 ...item,
@@ -26,14 +27,16 @@ export function CartItemsReducer(state: CartItem[], action: Actions) {
             }
             return item;
           });
+
+          return {...state, cartItems: updatedItems};
           
         } else {
-          return [...state, action.payload.product];
+          return { ...state, cartItems: [...state.cartItems, action.payload.product] };
         }
       }
 
       case ActionTypes.INCREMENT_PRODUCT: {
-        return state.map((item) => {
+        const updatedItems = state.cartItems.map((item) => {
           if (item.id === action.payload.product.id) {
             return {
               ...item,
@@ -42,10 +45,12 @@ export function CartItemsReducer(state: CartItem[], action: Actions) {
           }
           return item;
         });
+
+        return { ...state, cartItems: updatedItems };
       }
 
       case ActionTypes.DECREMENT_PRODUCT: {
-        return state.map((item) => {
+        const updatedItems = state.cartItems.map((item) => {
           if (item.id === action.payload.product.id) {
             return {
               ...item,
@@ -54,10 +59,23 @@ export function CartItemsReducer(state: CartItem[], action: Actions) {
           }
           return item;
         });
+      
+        return { ...state, cartItems: updatedItems };
       }
 
       case ActionTypes.REMOVE_FROM_CART: {
-        return state.filter((item) => item.id !== action.payload.product.id);
+        const updatedItems = state.cartItems.filter(
+          (item) => item.id !== action.payload.product.id
+        );
+
+        return { ...state, cartItems: updatedItems };
+      }
+
+      case ActionTypes.SET_PAYMENT_METHOD: {
+        return {
+          ...state,
+          paymentMethod: action.payload.paymentMethod,
+        };
       }
 
       default: {

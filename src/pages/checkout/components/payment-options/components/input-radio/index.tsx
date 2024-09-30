@@ -1,16 +1,19 @@
 import { MouseEvent } from "react";
 import { Bank, CreditCard, Money } from "@phosphor-icons/react";
 import { InputRadioContainer } from "./styles";
+import { useCart } from "../../../../../../hooks/useCart";
 
 interface InputRadioProps {
-  value: string;
+  value: "Cartão de crédito" | "Cartão de débito" | "Dinheiro";
 }
 
 export function InputRadio({ value }: InputRadioProps) {
+  const { setPaymentMethod } = useCart();
+
   function handlePaymentMethod(event: MouseEvent<HTMLInputElement>) {
     const value = event.currentTarget.value;
-    const stringifiedData = JSON.stringify(value);
-    localStorage.setItem("@coffee-delivery:payment-method", stringifiedData);
+
+    setPaymentMethod(value);
   }
 
   return (
