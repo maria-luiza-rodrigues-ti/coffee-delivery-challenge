@@ -52,8 +52,6 @@ export function CartContextProvider({ children }: ProductContextProviderProps) {
   useEffect(() => {
     const stateJSON = JSON.stringify(cartItemsState);
 
-    console.log(cartItemsState);
-
     localStorage.setItem("@coffee-delivery:cart-state-1.0.0", stateJSON);
   }, [cartItemsState]);
 
