@@ -85,7 +85,7 @@ $ yarn dev
 
 ## Links
 
-- URL: [https://maria-luiza-rodrigues-ti.github.io/b8one-challenge/](https://maria-luiza-rodrigues-ti.github.io/b8one-challenge/)
+- URL: [ https://maria-luiza-rodrigues-ti.github.io/coffee-delivery-challenge/](https://maria-luiza-rodrigues-ti.github.io/coffee-delivery-challenge/)
 
 ## Autor
 
